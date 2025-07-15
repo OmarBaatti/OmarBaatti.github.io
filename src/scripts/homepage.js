@@ -16,7 +16,21 @@ document.addEventListener('DOMContentLoaded', function() {
         cards.forEach((card, index) => {
             const angle = index * angleStep;
             card.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(400px)`;
+            
+            // Aggiungi click listener per navigazione diretta
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('active')) {
+                    goToCard(index);
+                }
+            });
         });
+        updateActiveCard();
+    }
+    
+    // Vai direttamente a una carta specifica
+    function goToCard(targetIndex) {
+        const targetAngle = -targetIndex * angleStep;
+        currentAngle = targetAngle;
         updateActiveCard();
     }
     
@@ -46,18 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     nextBtn.addEventListener('click', () => rotateCarousel(-1));
     prevBtn.addEventListener('click', () => rotateCarousel(1));
     
-    // Auto-rotate (opzionale)
-    let autoRotateInterval;
-    
-    function startAutoRotate() {
-        autoRotateInterval = setInterval(() => {
-            rotateCarousel(-1);
-        }, 4000);
-    }
-    
-    function stopAutoRotate() {
-        clearInterval(autoRotateInterval);
-    }
+    // RIMOSSA LA ROTAZIONE AUTOMATICA
     
     // Gestione touch per dispositivi mobili
     let startX = 0;
@@ -66,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
     carousel.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         isDragging = true;
-        stopAutoRotate();
     });
     
     carousel.addEventListener('touchmove', (e) => {
@@ -82,23 +84,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (Math.abs(diffX) > 50) {
             if (diffX > 0) {
-                rotateCarousel(-1); // Swipe left - next
+                rotateCarousel(-1);
             } else {
-                rotateCarousel(1);  // Swipe right - prev
+                rotateCarousel(1);
             }
         }
         
         isDragging = false;
-        setTimeout(startAutoRotate, 2000);
     });
     
-    // Pausa auto-rotate al hover
-    carousel.addEventListener('mouseenter', stopAutoRotate);
-    carousel.addEventListener('mouseleave', () => {
-        setTimeout(startAutoRotate, 1000);
-    });
-    
-    // Inizializza
+    // Inizializza il carosello
     initializeCards();
-    startAutoRotate();
 });
