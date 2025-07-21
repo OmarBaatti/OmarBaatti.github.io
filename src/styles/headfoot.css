@@ -36,11 +36,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    caret-color: var(--accent-blue);
 }
 
 html {
     scroll-behavior: smooth; /* per portfolio dove rimando con # */
+    caret-color: var(--accent-blue);
 }
 
 body {
@@ -178,6 +178,7 @@ ul li.icon:hover a {
     background-color: rgba(0, 0, 0, 0.8);
     border: 1px solid var(--accent-purple);
     color: var(--text-light);
+    z-index: 1000;
 }
 
 #scrollb.visible {

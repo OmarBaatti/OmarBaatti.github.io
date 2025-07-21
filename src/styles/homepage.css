@@ -234,6 +234,11 @@ section h2:not(.heroh2):hover {
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+    transition: 0.3s ease;
+}
+
+.skill-item:hover i {
+    transform: scale(1.1);
 }
 
 .skill-name {
@@ -411,7 +416,12 @@ section h2:not(.heroh2):hover {
 
 .soft-skill-card.active i {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 10px rgba(214, 0, 118, 0.5));
+    filter: drop-shadow(0 0 1px white);
+}
+
+.soft-skill-card.active i:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 2px white);
 }
 
 .soft-skill-card h3 {

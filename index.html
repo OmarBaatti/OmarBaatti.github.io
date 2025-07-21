@@ -21,7 +21,7 @@
         <ul id="mobileMenu">
             <li class="active"><a href=".">Home</a></li>
             <li><a href="portfolio">Portfolio</a></li>
-            <li><a href="about">About Me</a></li>
+            <li><a href="about">About</a></li>
             <li><a href="contact">Contacts</a></li>
             <li class="icon"><a href="https://linkedin.com/in/omar-baatti" target="_blank"><i class="fa-brands fa-linkedin fa-2xl"></i></a></li>
         </ul>
@@ -458,6 +458,13 @@
     <!-- TSPARTICLES SCRIPT -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
     <script type="text/javascript">
+        const wWidth = window.innerWidth;
+        let varParticles = wWidth * window.innerHeight / 900;
+        const nParticles = varParticles > 1250 ? 1000 : varParticles;
+        const particleDistance = wWidth / 40;
+        const particleHoverDistance = wWidth / 30;
+        const hoverRadius = wWidth / 15;
+        const particleSize = varParticles / 1000;
         const tscontainer = tsParticles.load("tsparticles", {
             fpsLimit: 60,
             fullScreen: {
@@ -465,7 +472,7 @@
             },
             particles: {
                 number: {
-                    value: 1000,
+                    value: nParticles,
                 },
                 move: {
                     enable: true,
@@ -478,30 +485,30 @@
                     value: "#D60076"  // Colore delle particelle
                 },
                 links: {
-                    enable: true,  // Disabilita i link permanenti
-                    distance: 30,
+                    enable: true,
+                    distance: particleDistance,
                     color: "#007aff",
                     opacity: 0.5,
-                    width: 1
+                    width: particleSize,
                 },
                 size: {
-                    value: 1,
+                    value: particleSize,
                 },
             },
             interactivity: {
                 events: {
                     onHover: {
                         enable: true,
-                        mode: "connect",  // Attiva la modalità connect al passaggio del mouse
+                        mode: "connect",
                     },
                 },
                 modes: {
                     connect: {
-                        distance: 35,  // Raggio di collegamento tra i punti
+                        distance: particleHoverDistance,  // Raggio di collegamento tra i punti
                         links: {
                             opacity: 1,
                         },
-                        radius: 125  // Raggio intorno al puntatore in cui si collegano i punti
+                        radius: hoverRadius  // Raggio intorno al puntatore in cui si collegano i punti
                     },
                 },
             },
